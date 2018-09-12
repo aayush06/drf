@@ -66,8 +66,8 @@ class RegisterView(APIView):
                 if request.accepted_renderer.format == "html":
                     return redirect("login")
                 return Response(data, status=status.HTTP_201_CREATED)
-            return Response({"success": False}, status=status.HTTP_401_UNAUTHORIZED)
-        return Response({"success": False, 'msg': serializer.user_check.message}, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse("User not registered successfully")
+        return HttpResponse(str(serializer.user_check.message))
         
 
 class LoginView(APIView):
